@@ -1,0 +1,54 @@
+U-Section 27 - Git, GitHub, and Version control
+
+Navigate to the directory and execute below commands:
+
+Initial set up:
+git config --list --show-origin
+
+git config --global user.name "John Doe"
+git config --global user.email johndoe@example.com
+
+If above Set up is not done, below error will encountered during commit
+#####################################################################################
+$ git commit -m "Added 1st file to git"
+Author identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+to set your account's default identity.
+Omit --global to set the identity only in this repository.
+
+fatal: unable to auto-detect email address (got 'username@ServerName.(none)')
+#####################################################################################
+
+
+
+git init
+--This will create .git dir in the location from where the command is executed which is used to track, commit and version control the changes
+
+Working directory
+Stating directory aka Staging area: the location where files/content will be place from which git picks it up to perform operations like track, commit etc
+
+git status
+--to know/list the tracked and untracked files of git
+
+git add <filename> 
+--to add/stage <filename> to staging area
+
+git add .
+--to add/stage everything in current dir to staging area
+
+git rm --cached <filename> 
+--to remove/unstage files to staging area
+
+git commit -m "<comment/message to be added describing what is changed>"
+--this comment after flag "m" is very important as it describes the changes
+
+git log
+--to list details of commits like hash(which uniquely identifies the commit), who did it, at what time, and the commit message
+
