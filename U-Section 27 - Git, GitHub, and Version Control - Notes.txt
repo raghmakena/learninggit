@@ -31,8 +31,17 @@ fatal: unable to auto-detect email address (got 'username@ServerName.(none)')
 git init
 --This will create .git dir in the location from where the command is executed which is used to track, commit and version control the changes
 
-Working directory
-Stating directory aka Staging area: the location where files/content will be place from which git picks it up to perform operations like track, commit etc
+
+Git flow will be like, 
+1. Working directory - files created in working dir
+2. Staging directory aka Staging area: the location where files/content will be placed from which git picks it up to perform operations like track, commit etc
+3. Repository - files will be put into Repository after commit
+
+The reason for having staging directory instead of directly putting the files to Repository is because we don't want to put everything in "local/working dir" into "repository"
+
+###########
+working dir --> staging dir --> local repository --> remote repository
+###########
 
 git status
 --to know/list the tracked and untracked files of git
@@ -43,6 +52,9 @@ git add <filename>
 git add .
 --to add/stage everything in current dir to staging area
 
+git restore --staged <filename>
+--to remove/unstage files from staging area
+
 git rm --cached <filename> 
 --to remove/unstage files to staging area
 
@@ -52,3 +64,59 @@ git commit -m "<comment/message to be added describing what is changed>"
 git log
 --to list details of commits like hash(which uniquely identifies the commit), who did it, at what time, and the commit message
 
+
+git diff <filename>
+--to track/identify the difference between local file and repository file
+
+git checkout <filename>
+--to restore the local file from an earlier version of the file stored in repository
+
+
+…or create a new repository on the command line
+############# git commands set up start
+echo "# learninggit" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/raghmakena/learninggit.git
+git push -u origin main
+############# git commands set up end
+
+…or push an existing repository from the command line
+############# git remote repository commands set up start
+git remote add origin https://github.com/raghmakena/learninggit.git
+git branch -M main
+git push -u origin main
+############# git remote repository commands set up end
+
+git remote add <remote_name> <url>
+--to add remote repository
+
+--E.g.,
+git remote add origin https://github.com/raghmakena/learninggit.git
+--origin is the name to suggest the "remote" repository and we can use any word there instead of origin.
+--but majority of the users use this as standard convention to mention remote repository
+
+git push -u <remote_name> <branch_name>
+git push -u origin main
+--pushes the code in your local repository to remote repository using the "u" flag which links up remote and local repository
+--main is the name of the branch which is the default branch
+
+##### Below error will be returned if "git branch -M main" is not run before "git push"
+$ git push -u origin main
+error: src refspec main does not match any
+error: failed to push some refs to 'https://github.com/raghmakena/learninggit.git'
+$
+#####
+
+$ git push -u origin main
+Enumerating objects: 8, done.
+Counting objects: 100% (8/8), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (8/8), 1.43 KiB | 1.43 MiB/s, done.
+Total 8 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/raghmakena/learninggit.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
